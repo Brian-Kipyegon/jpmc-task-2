@@ -49,18 +49,13 @@ class Graph extends Component<IProps, {}> {
 
       // Add more Perspective configurations here.
       elem.load(this.table);
-      elem.setAttribute('view', 'y_line');
-      elem.setAttribute('column-pivots', '["stock"]');
-      elem.setAttribute('row-pivots', '["timestamp"]');
-      elem.setAttribute('columns', '["top_ask_price"]');
-      elem.setAttribute('aggregates', `
-        {
-          "stock": "distinct count",
-          "top_ask_price": "avg",
-          "top_bid_price": "avg",
-          "timestamp": "distinct count",
-        }
-      `);
+      elem.setAttribute("view", "y_line");
+      elem.setAttribute("column-pivots", '["stock"]');
+      elem.setAttribute("row-pivots", '["timestamp"]');
+      elem.setAttribute("columns", '["top_ask_price"]');
+      elem.setAttribute("aggregates",
+        '{"stock":"distinct_count", "top_ask_price":"avg", "top_bid_price":"avg", "timestamp":"distinct_count"}'
+      );
     }
   }
 
@@ -69,10 +64,8 @@ class Graph extends Component<IProps, {}> {
     if (this.table) {
       // As part of the task, you need to fix the way we update the data props to
       // avoid inserting duplicated entries into Perspective table again.
-      this.table.clear();
       this.table.update(this.props.data.map((el: any) => {
         // Format the data from ServerRespond to the schema
-        console.log(el);
 
         return {
           stock: el.stock,

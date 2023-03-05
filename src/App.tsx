@@ -48,14 +48,14 @@ class App extends Component<{}, IState> {
         // Previous data in the state and the new data from server
         // console.log(serverResponds);
         this.setState({
-          data: [...this.state.data, ...serverResponds],
+          data: serverResponds,
           showGraph: true
         });
       });
 
       x++;
 
-      if(x > 10) {
+      if(x > 1000) {
         clearInterval(interval);
       }
 
